@@ -32,26 +32,13 @@ class App extends Component {
     })
   }
 
-  handleAddPlayer = (name) => {
-    this.setState(prevState => {
+  handleRemoveToDo = (id) => {
+    this.setState ( prevState => {
       return {
-        players: [
-          ...prevState.players,
-          {
-            name: name,
-            score: 0,
-            id: this.prevPlayerId += 1
-          }
-        ]
-      }
-      
-    })
+        toDos: prevState.toDos.filter(p => p.id !== id)
+      };
+    });
   }
-
-
-  handleRemoveToDo
-
-
 
   render(){
     return (
@@ -65,9 +52,14 @@ class App extends Component {
           index={index}
           id={toDo.id}
           complete={toDo.complete}
+          key={toDo.id.toString()}
+          removeToDo={this.handleRemoveToDo}
           />
         )}
-        <AddToDoForm />
+        <AddToDoForm 
+          addToDo={this.handleAddToDo}
+          
+        />
       </div>
     );
   }

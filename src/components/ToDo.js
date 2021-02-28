@@ -3,7 +3,11 @@ import React from 'react';
 const ToDo = (props) => {
     return (
         <div className='toDo'>
-            <p>{props.text}</p>
+            <span>
+                {props.text}
+                <button className="remove-todo" onClick={() => props.removeToDo(props.id)}>✖</button>
+            </span>
+            
         </div>
     );
 }
